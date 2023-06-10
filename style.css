@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Explora&family=Inter&family=Jost:ital,wght@0,300;0,400;0,500;1,400&family=Montserrat&family=Ms+Madi&family=My+Soul&family=Nunito&family=Open+Sans&family=Poppins:wght@200;400&family=Roboto:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Updock&display=swap');
+
+html,body{
+    font-size: 14px;
+    overflow-x: hidden;
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins', sans-serif!important;
+    background-color: #ddbaba;
+}
+.swap_box{
+    width: 35%;
+    margin: 15% auto;
+    display: block;
+    background-color: #e3cccc;
+    padding: 30px;
+    border-radius: 10px;
+}
+.swap_box label,p{
+    font-size: 20px;
+    padding-right: 10px;
+}
+.swap_box input{
+    width: 60%;
+    height: 30px;
+    border-radius: 50px;
+    border: 2px solid lightblue;
+}
+.swap_box button{
+    padding: 8px 30px;
+    border-radius: 15px;
+    border: 2px solid lightblue;
+    margin-top: 20px;
+    cursor: pointer;
+    font-size: 15px;
+}
