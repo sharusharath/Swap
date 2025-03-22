@@ -4,17 +4,153 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://d1jougtdqdwy1v.cloudfront.net/css/5.2.3/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <script type="text/javascript" src="https://d1jougtdqdwy1v.cloudfront.net/js/5.2.3/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
 </head>
-<body>
-    <section class="swap_string">
-        <div class="swap_box">
-            <label>Enter the string</label>
-            <input type="text" class="string_text">
-            <button type="button" id="check">Check</button>
-            <p>The string after swap is :<span id="swapped_string"></span></p>
-        </div>
-    </section>
+<body class="make_inwidget_redesign">
+    <!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#prequalDesktopModal">
+    Launch static backdrop modal
+  </button>
+
+
+  <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#prequalMobileOffcanvas" aria-controls="staticBackdrop">
+    Toggle static offcanvas
+  </button> -->
+  
+  
+  
+   <!-- Modal -->
+   <section class="prequalDesktopModalContainerModal">
+    <div class="modalPrequal" id="prequalDesktopModal">
+            <div class="modal-header-prequal">
+                <h1 class="modal-title-prequal Container-title" id="staticBackdropLabel">Credit Estimator <span><img src="/static/asset/icon1.svg" alt="" id="makeImgPrequal"></span></h1>
+				
+            </div>
+            <div class="modal-body">
+                <div class="form-body">
+                    <form action="/estimate" method="POST" id="estimator-form">
+					<input type="hidden" id="make" name="make" value="jeep">
+			        <input type="hidden" id="analytics_payload" name="analytics_payload" value="">
+                    <p class="form-title">Fill out the following form to get an estimated max monthly payment and loan amount</p> 
+                        <div class="row">
+                            
+                            <div class="col-lg-4 col-md-4">
+                                <label for="">First Name <span class="mandat">*</span></label>
+                                <input type="text" class="form-control form-field" id="firstname" name="first-name" autocomplete="off" value="">
+                                <small class="error-message" id="firstname-error"></small>
+                            </div>
+                            <div class="col-lg-4 col-md-4">
+                                <label for="">Last Name <span class="mandat">*</span></label>
+                                <input type="text" class="form-control form-field" id="lastname" name="last-name" autocomplete="off" value="">
+                                <small class="error-message" id="lastname-error"></small>
+                            </div>
+                            <div class="col-lg-4 col-md-4">
+                                <label for="">Phone<span class="mandat">*</span></label>
+                                <input type="text" maxlength="14" class="form-control form-field" id="phone" name="phone" autocomplete="off">
+                                <small class="error-message" id="phone-error"></small>
+                            </div>
+                        <!-- </div> -->
+                        <!-- <div class="row"> -->
+                            <div class="col-lg-4 col-md-6">
+                                <label for="">Email <span class="mandat">*</span></label>
+                                <input type="text" class="form-control form-field" id="email" name="email" autocomplete="off" value="">
+                                <small class="error-message" id="useremail-error"></small>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <label for="">Postal Code <span class="mandat">*</span></label>
+                                <input type="tel" id="zipcode" name="zipcode" class="form-control form-field" autocomplete="off" maxlength="5" value="">
+                                <small class="error-message" id="zipcode-error"></small>
+                            </div>
+                            <div class="col-lg-4 col-md-12">
+                                <label for="">Address Line 1 <span class="mandat">*</span></label>
+                                <input type="text" class="form-control form-field" id="address" name="address" autocomplete="off" placeholder="apartment no, street name">
+                                <small class="error-message" id="address-error"></small>
+                            </div>
+                            <div class="col-lg-4 col-md-12">
+                                <label for="">Address Line 2 </label>
+                                <input type="text" class="form-control form-field" id="addressline2" name="addressline2"  autocomplete="off">
+                                <small class="error-message"></small>
+                            </div>
+                        <!-- </div> -->
+                        <!-- <div class="row"> -->
+                            <div class="col-lg-4 col-md-4">
+                                <label for="">City<span class="mandat">*</span></label>
+                                <input type="text" class="form-control form-field" id="city" name="city"  autocomplete="off">
+                                <small class="error-message" id="city-error"></small>
+                            </div>
+                            <div class="col-lg-4 col-md-4">
+                                <label for="">State <span class="mandat">*</span></label>
+                                <input type="text" class="form-control form-field" id="state" name="state"  autocomplete="off">
+                                <small class="error-message" id="state-error"></small>
+                            </div>
+                            <div class="col-lg-4 col-md-4">
+                                <label for="">Pre Tax Monthly Income <span class="mandat">*</span></label>
+                                <input type="number" id="income" name="income" min="0" class="form-control form-field" autocomplete="off">
+                                <small class="error-message" id="income-error"></small>
+                            </div>
+                        </div>
+                        <span class="noteText">Note: This will not affect your credit score.</span>
+                        <div class="modal-footer-form">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="landscapeCheck">
+                                <label class="form-check-label termsCheck" for="landscapeCheck">
+                                    I approve OfferLogix obtaining my credit score to use in connection with a potential credit transaction. I understand that my credit score will not be impacted
+                                </label>
+                            </div>
+                            <button type="button" class="btn estimateBtn" id="estimateBtn" tabindex="0" onclick="validateForm()">See my estimate <a href="credit-result.html">a</a></button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+    </div>
+</section>
+<!-- Modal End -->
+
+<script>
+    // Function to change the image source based on body class
+    function changeImageBasedOnBodyClass() {
+      const bodyClass = document.body.className; // Get the class of the body
+      const imageElement = document.getElementById('makeImgPrequal'); // Get the image element
+ 
+      // Change the image source based on the class
+      if (bodyClass === 'make_alfa') {
+        imageElement.src = 'https://d1jougtdqdwy1v.cloudfront.net/dealeradmin/images/Car_alfa_prequal.svg'; // Set image for "make_jeep"
+      } else if (bodyClass === 'make_jeep') {
+        imageElement.src = 'https://d1jougtdqdwy1v.cloudfront.net/dealeradmin/images/Car_jeep_prequal.svg'; // Set image for "make_car"
+      } else if (bodyClass === 'make_ram') {
+        imageElement.src = 'https://d1jougtdqdwy1v.cloudfront.net/dealeradmin/images/Car_ram_prequal.svg'; // Set image for "make_truck"
+      }
+      else if (bodyClass === 'make_dodge') {
+        imageElement.src = 'https://d1jougtdqdwy1v.cloudfront.net/dealeradmin/images/Car_dodge_prequal.svg';
+      } 
+      else if (bodyClass === 'make_chrysler') {
+        imageElement.src = 'https://d1jougtdqdwy1v.cloudfront.net/dealeradmin/images/Car_chrysler_prequal.svg';
+      }
+      else if (bodyClass === 'make_ram') {
+        imageElement.src = 'https://d1jougtdqdwy1v.cloudfront.net/dealeradmin/images/Car_ram_prequal.svg';
+      }
+      else if (bodyClass === 'make_fiat') {
+        imageElement.src = 'https://d1jougtdqdwy1v.cloudfront.net/dealeradmin/images/Car_fiat_prequal.svg';
+      }
+      else if (bodyClass === 'make_inwidget_redesign') {
+        imageElement.src = 'https://d1jougtdqdwy1v.cloudfront.net/dealeradmin/images/inwidget_redesign.svg';
+      }
+      else {
+        imageElement.src = 'https://d1jougtdqdwy1v.cloudfront.net/dealeradmin/images/inwidget_redesign.svg'; // Default image if class does not match
+      }
+    }
+ 
+    // Call the function when the page loads to change the image based on the current body class
+    window.onload = changeImageBasedOnBodyClass;
+</script>
+
+
+
+
 </body>
 </html>
-<script type="text/javascript" src="script.js"></script>
