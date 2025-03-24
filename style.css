@@ -4,6 +4,7 @@ html,body{
     font-size: 14px;
     box-sizing: border-box;
     font-family: 'Montserrat'!important;
+    overflow-x: hidden;
     --Color-Primary-Color:#F2B54A;
 }
 @font-face {
@@ -482,7 +483,7 @@ body.make_alfa{
 .prequalDesktopModalContainerModal{
     max-width: 900px;
     margin: auto;
-    padding: 20px;
+    /* padding: 20px; */
 
     .Container-title{
         color: var(--Color-Primary-Color);
@@ -697,7 +698,7 @@ body.make_alfa{
 
 /* SLIDER CONTAINER */
 .creditFail{
-    padding: 32px;
+    padding: 20px;
 
     h3{
         text-align: center;
@@ -841,7 +842,7 @@ body.make_alfa{
 /* RESPONSIVE */
 @media(max-width: 767px){
     .prequalDesktopModalContainerModal{
-        padding: 30px;
+        padding: 10px;
     }
     #estimator-score-container{
         .backcta{
@@ -862,7 +863,7 @@ body.make_alfa{
 
 @media (min-width: 768px) and (max-width: 1200px) {
     .prequalDesktopModalContainerModal{
-        padding: 30px;
+        padding: 5px;
     }  
 }
 /* RESPONSIVE */
