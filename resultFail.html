@@ -1,1 +1,157 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
+     <link rel="stylesheet" href="main.css">
+    <!-- <link rel="stylesheet" href="https://d1jougtdqdwy1v.cloudfront.net/css/5.2.3/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://d1jougtdqdwy1v.cloudfront.net/css/widgetBootstrap/widgetBootstrap.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <script type="text/javascript" src="https://d1jougtdqdwy1v.cloudfront.net/js/5.2.3/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
+</head>
+<body class="make_jeep">
+    <!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#prequalDesktopModal">
+    Launch static backdrop modal
+  </button>
+
+
+  <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#prequalMobileOffcanvas" aria-controls="staticBackdrop">
+    Toggle static offcanvas
+  </button> -->
+  
+  
+  
+  <!-- Modal -->
+   <section class="prequalDesktopModalContainerModal">
+    <div class="modalResultFail" id="prequalDesktopModalFail">
+                <div class="widget-modal-header">
+                    <h1 class="modal-title Container-title" id="staticBackdropLabel">Credit Estimator <span><img src="images/icon1.svg" id="makeImgPrequal"></span></h1>
+                </div>
+                <div class="widget-modal-body">
+                    <div class="form-body">
+                     
+                        <!-- NO RESULT SECTION -->
+                         <section class="creditFail">
+                            <h3>Unfortunately, we don't have enough information to show you credit score.</h3>
+                            <p class="whatverbiage">What is your approximate credit score ?</p>
+                            <div class="score-display" id="scoreValue">Score - 700</div>
+                            <div class="slider-container">
+                                <input type="range" min="300" max="850" step="10" value="700" class="slider" id="creditScore">
+                                <div class="tick-marks">
+                                    <div class="tick"><span>300</span></div>
+                                    <div class="tick"><span>350</span></div>
+                                    <div class="tick"><span>400</span></div>
+                                    <div class="tick"><span>450</span></div>
+                                    <div class="tick"><span>500</span></div>
+                                    <div class="tick"><span>550</span></div>
+                                    <div class="tick"><span>600</span></div>
+                                    <div class="tick"><span>650</span></div>
+                                    <div class="tick"><span>700</span></div>
+                                    <div class="tick"><span>750</span></div>
+                                    <div class="tick"><span>800</span></div>
+                                    <div class="tick"><span>850</span></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="ctasection">
+                                    <button type="button" class="widget-btn backcta"><i class="bi bi-chevron-left"></i>back</button>
+                                    <button type="button" class="widget-btn backcta">proceed<i class="bi bi-chevron-right"></i></button>
+                                </div>
+                            </div>
+                         </section>   
+
+                        <!-- NO RESULT SECTION -->
+
+                    </div>
+                </div>
+            </div>
+</section>
+<!-- Modal End -->
+
+
+
+
+
+    
+
+
+
+<script>
+    
+
+
+
+
+    // RANGE SLIDER JS
+    const slider = document.getElementById("creditScore");
+    const scoreValue = document.getElementById("scoreValue");
+
+    slider.addEventListener("input", function() {
+        scoreValue.textContent = this.value;
+    });
+
+
+
+    function updateSliderColor() {
+        let min = slider.min;
+        let max = slider.max;
+        let value = slider.value;
+        let percentage = ((value - min) / (max - min)) * 100;
+        slider.style.setProperty("--progress", percentage + "%");
+        scoreValue.textContent = value;
+    }
+
+    slider.addEventListener("input", updateSliderColor);
+
+    // Set initial color on page load
+    updateSliderColor();
+
+
+    // ICON CHANGE JS
+    function changeImageBasedOnBodyClass() {
+      const bodyClass = document.body.className; // Get the class of the body
+      const imageElement = document.getElementById('makeImgPrequal'); // Get the image element
+ 
+      // Change the image source based on the class
+      if (bodyClass === 'make_alfa') {
+        imageElement.src = 'https://d1jougtdqdwy1v.cloudfront.net/dealeradmin/images/Car_alfa_prequal.svg'; // Set image for "make_jeep"
+      } else if (bodyClass === 'make_jeep') {
+        imageElement.src = 'https://d1jougtdqdwy1v.cloudfront.net/dealeradmin/images/Car_jeep_prequal.svg'; // Set image for "make_car"
+      } else if (bodyClass === 'make_ram') {
+        imageElement.src = 'https://d1jougtdqdwy1v.cloudfront.net/dealeradmin/images/Car_ram_prequal.svg'; // Set image for "make_truck"
+      }
+      else if (bodyClass === 'make_dodge') {
+        imageElement.src = 'https://d1jougtdqdwy1v.cloudfront.net/dealeradmin/images/Car_dodge_prequal.svg';
+      } 
+      else if (bodyClass === 'make_chrysler') {
+        imageElement.src = 'https://d1jougtdqdwy1v.cloudfront.net/dealeradmin/images/Car_chrysler_prequal.svg';
+      }
+      else if (bodyClass === 'make_ram') {
+        imageElement.src = 'https://d1jougtdqdwy1v.cloudfront.net/dealeradmin/images/Car_ram_prequal.svg';
+      }
+      else if (bodyClass === 'make_fiat') {
+        imageElement.src = 'https://d1jougtdqdwy1v.cloudfront.net/dealeradmin/images/Car_fiat_prequal.svg';
+      }
+      else if (bodyClass === 'make_spoticar') {
+        imageElement.src = 'https://d1jougtdqdwy1v.cloudfront.net/dealeradmin/images/car_spoticar.svg';
+      }
+      else if (bodyClass === 'make_inwidget_redesign') {
+        imageElement.src = 'https://d1jougtdqdwy1v.cloudfront.net/dealeradmin/images/inwidget_redesign.svg';
+      }
+      else {
+        imageElement.src = 'https://d1jougtdqdwy1v.cloudfront.net/dealeradmin/images/inwidget_redesign.svg'; // Default image if class does not match
+      }
+    }
+ 
+    // Call the function when the page loads to change the image based on the current body class
+    window.onload = changeImageBasedOnBodyClass;
+
+  </script>
+
+</body>
+</html>
