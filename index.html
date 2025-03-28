@@ -4,13 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://d1jougtdqdwy1v.cloudfront.net/css/widgetBootstrap/widgetBootstrap.css">
     <link rel="stylesheet" href="https://d1jougtdqdwy1v.cloudfront.net/css/5.2.3/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
     <script type="text/javascript" src="https://d1jougtdqdwy1v.cloudfront.net/js/5.2.3/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 </head>
-<body class="make_inwidget_redesign">
+<body class="make_jeep">
     <!-- Button trigger modal -->
 <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#prequalDesktopModal">
     Launch static backdrop modal
@@ -27,81 +31,83 @@
    <section class="prequalDesktopModalContainerModal">
     <div class="modalPrequal" id="prequalDesktopModal">
             <div class="modal-header-prequal">
-                <h1 class="modal-title-prequal Container-title" id="staticBackdropLabel">Credit Estimator <span><img src="/static/asset/icon1.svg" alt="" id="makeImgPrequal"></span></h1>
+                <h1 class="modal-title-prequal Container-title" id="staticBackdropLabel">Credit Estimator <span><img src="https://d1jougtdqdwy1v.cloudfront.net/dealeradmin/images/car_spoticar.svg" alt="" id="makeImgPrequal"></span></h1>
 				
             </div>
-            <div class="modal-body">
+            <div class="widget-modal-body">
                 <div class="form-body">
                     <form action="/estimate" method="POST" id="estimator-form">
 					<input type="hidden" id="make" name="make" value="jeep">
 			        <input type="hidden" id="analytics_payload" name="analytics_payload" value="">
                     <p class="form-title">Fill out the following form to get an estimated max monthly payment and loan amount</p> 
-                        <div class="row">
+                        <div class="widget-row">
                             
-                            <div class="col-lg-4 col-md-4 col-sm-6">
-                                <label for="">First Name <span class="mandat">*</span></label>
-                                <input type="text" class="form-control form-field" id="firstname" name="first-name" autocomplete="off" value="">
+                            <div class="widget-col-lg-6 widget-col-md-6 widget-col-sm-6">
+                                <label for="">First Name<span class="mandat">*</span></label>
+                                <input type="text" class="widget-form-control form-field" id="firstname" name="first-name" autocomplete="off" value="">
                                 <small class="error-message" id="firstname-error"></small>
                             </div>
-                            <div class="col-lg-4 col-md-4 col-sm-6">
-                                <label for="">Last Name <span class="mandat">*</span></label>
-                                <input type="text" class="form-control form-field" id="lastname" name="last-name" autocomplete="off" value="">
+                            <div class="widget-col-lg-6 widget-col-md-6 widget-col-sm-6">
+                                <label for="">Last Name<span class="mandat">*</span></label>
+                                <input type="text" class="widget-form-control form-field" id="lastname" name="last-name" autocomplete="off" value="">
                                 <small class="error-message" id="lastname-error"></small>
                             </div>
-                            <div class="col-lg-4 col-md-4 col-sm-6">
-                                <label for="">Phone<span class="mandat">*</span></label>
-                                <input type="text" maxlength="14" class="form-control form-field" id="phone" name="phone" autocomplete="off">
-                                <small class="error-message" id="phone-error"></small>
+                            <div class="widget-col-lg-6 widget-col-md-6 widget-col-sm-6">
+                                <label for="">Email<span class="mandat">*</span></label>
+                                <input type="text" class="widget-form-control form-field" id="email" name="email" autocomplete="off" value="">
+                                <small class="error-message" id="useremail-error"></small>
                             </div>
                         <!-- </div> -->
                         <!-- <div class="row"> -->
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <label for="">Email <span class="mandat">*</span></label>
-                                <input type="text" class="form-control form-field" id="email" name="email" autocomplete="off" value="">
-                                <small class="error-message" id="useremail-error"></small>
+                            <div class="widget-col-lg-6 widget-col-md-6 widget-col-sm-6">
+                                <label for="">Phone<span class="mandat">*</span></label>
+                                <input type="text" maxlength="14" class="widget-form-control form-field" id="phone" name="phone" autocomplete="off">
+                                <small class="error-message" id="phone-error"></small>
                             </div>
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <label for="">Postal Code <span class="mandat">*</span></label>
-                                <input type="tel" id="zipcode" name="zipcode" class="form-control form-field" autocomplete="off" maxlength="5" value="">
-                                <small class="error-message" id="zipcode-error"></small>
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <label for="">Address Line 1 <span class="mandat">*</span></label>
-                                <input type="text" class="form-control form-field" id="address" name="address" autocomplete="off" placeholder="apartment no, street name">
+                            <div class="widget-col-lg-12 widget-col-md-12 widget-col-sm-12">
+                                <label for="">Address<span class="mandat">*</span></label>
+                                <input type="text" class="widget-form-control form-field" id="address" name="address" autocomplete="off" placeholder="apartment no, street name">
                                 <small class="error-message" id="address-error"></small>
                             </div>
-                            <div class="col-lg-4 col-md-6 col-sm-6">
+                            <!-- <div class="col-lg-4 col-md-6 col-sm-6">
                                 <label for="">Address Line 2 </label>
                                 <input type="text" class="form-control form-field" id="addressline2" name="addressline2"  autocomplete="off">
                                 <small class="error-message"></small>
-                            </div>
+                            </div> -->
                         <!-- </div> -->
                         <!-- <div class="row"> -->
-                            <div class="col-lg-4 col-md-4 col-sm-6">
+                            <div class="widget-col-lg-6 widget-col-md-6 widget-col-sm-6">
                                 <label for="">City<span class="mandat">*</span></label>
-                                <input type="text" class="form-control form-field" id="city" name="city"  autocomplete="off">
+                                <input type="text" class="widget-form-control form-field" id="city" name="city"  autocomplete="off">
                                 <small class="error-message" id="city-error"></small>
                             </div>
-                            <div class="col-lg-4 col-md-4 col-sm-6">
-                                <label for="">State <span class="mandat">*</span></label>
-                                <input type="text" class="form-control form-field" id="state" name="state"  autocomplete="off">
-                                <small class="error-message" id="state-error"></small>
                             </div>
-                            <div class="col-lg-4 col-md-4 col-sm-6">
+                            <div class="widget-row">
+                                <div class="widget-col-lg-6 widget-col-md-6 widget-col-sm-6">
+                                    <label for="">State<span class="mandat">*</span></label>
+                                    <input type="text" class="widget-form-control form-field" id="state" name="state"  autocomplete="off">
+                                    <small class="error-message" id="state-error"></small>
+                                </div>
+                                <div class="widget-col-lg-6 widget-col-md-6 widget-col-sm-6">
+                                    <label for="">ZIP Code<span class="mandat">*</span></label>
+                                    <input type="tel" id="zipcode" name="zipcode" class="widget-form-control form-field" autocomplete="off" maxlength="5" value="">
+                                    <small class="error-message" id="zipcode-error"></small>
+                                </div>
+                            <!-- <div class="col-lg-4 col-md-4 col-sm-6">
                                 <label for="">Pre Tax Monthly Income <span class="mandat">*</span></label>
                                 <input type="number" id="income" name="income" min="0" class="form-control form-field" autocomplete="off">
                                 <small class="error-message" id="income-error"></small>
+                            </div> -->
                             </div>
-                        </div>
                         <span class="noteText">Note: This will not affect your credit score.</span>
                         <div class="modal-footer-form">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="" id="landscapeCheck">
                                 <label class="form-check-label termsCheck" for="landscapeCheck">
-                                    I approve OfferLogix obtaining my credit score to use in connection with a potential credit transaction. I understand that my credit score will not be impacted
+                                    I certify I am providing my consent to Offerlogix to obtain my credit score to use in connection with a potential credit transaction. I understand that by giving my consent, my credit score will be accessed by Offerlogix via a “soft pull” and understand that this soft pull will not impact my credit score.
                                 </label>
                             </div>
-                            <button type="button" class="btn estimateBtn" id="estimateBtn" tabindex="0" onclick="validateForm()">See my estimate <a href="credit-result.html">a</a></button>
+                            <button type="button" class="widget-btn estimateBtn" id="estimateBtn" tabindex="0">See my estimate</button>
                         </div>
                     </form>
 
@@ -140,6 +146,9 @@
       else if (bodyClass === 'make_inwidget_redesign') {
         imageElement.src = 'https://d1jougtdqdwy1v.cloudfront.net/dealeradmin/images/inwidget_redesign.svg';
       }
+      else if (bodyClass === 'make_spoticar') {
+        imageElement.src = 'https://d1jougtdqdwy1v.cloudfront.net/dealeradmin/images/car_spoticar.svg';
+      }
       else {
         imageElement.src = 'https://d1jougtdqdwy1v.cloudfront.net/dealeradmin/images/inwidget_redesign.svg'; // Default image if class does not match
       }
@@ -147,6 +156,30 @@
  
     // Call the function when the page loads to change the image based on the current body class
     window.onload = changeImageBasedOnBodyClass;
+
+
+
+    // STATE JS
+    $(document).ready(function () {
+        var states = [
+            "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware",
+            "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky",
+            "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri",
+            "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York",
+            "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island",
+            "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington",
+            "West Virginia", "Wisconsin", "Wyoming"
+        ];
+
+        $("#state").autocomplete({
+            source: states,
+            minLength: 1,
+            open: function () {
+            $(".ui-autocomplete").addClass("custom-autocomplete"); 
+        }
+        });
+    });
+
 </script>
 
 
