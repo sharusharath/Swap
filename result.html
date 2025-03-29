@@ -1,1 +1,369 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+<!--      <link rel="stylesheet" href="main.css"> -->
+    <!-- <link rel="stylesheet" href="https://d1jougtdqdwy1v.cloudfront.net/css/5.2.3/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://d1jougtdqdwy1v.cloudfront.net/css/widgetBootstrap/widgetBootstrap.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <script type="text/javascript" src="https://d1jougtdqdwy1v.cloudfront.net/js/5.2.3/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
+</head>
+<body class="make_spoticar">
+
+  
+  
+  
+  <!-- Modal -->
+   <section class="prequalDesktopModalContainerModal">
+    <div class="modalResult" id="prequalDesktopModalResult">
+                <div class="widget-modal-header">
+                    <h1 class="modal-title Container-title" id="staticBackdropLabel">Credit Estimator <span> <img src="images/icon1.svg" id="makeImgPrequal"></span></h1>
+                </div>
+                <div class="widget-modal-body">
+                    <div class="form-body">
+                      
+
+                        <!-- CREDIT METER START -->
+                        <form action="" id="estimator-score-container">
+                            <div class="widget-row widget-justify-content-center credit-meter">
+                                <canvas id="creditmeter"></canvas>
+                            </div>
+                            <div class="widget-row score-container">
+                                <p class="credit-score">800 - 850</p>
+                                <p class="estimateTxt">Your credit estimates are:</p>
+                                <p class="estimateRating">Excellent</p>
+                            </div>
+                            <div class="widget-row note-score-container">
+                                <p class="note-credit-score">This estimation is provided as a range and does not affect your actual credit score.</p>
+                            </div>
+                            <div class="modal-footer-form widget-text-center">
+                                <!-- <button type="button" class="btn credit-score-btn" id="creditscoreBtn" tabindex="0">
+                                    <img src="images/Chevron Left.svg" alt="chevron left">
+                                    <span class="return">Return to 2024 Grand Cherokee Laredo x 4x2</span>
+                                </button> -->
+                                <div class="ctasection">
+                                    <button type="button" class="widget-btn backcta"><i class="bi bi-chevron-left"></i>back</button>
+                                    <button type="button" class="widget-btn backcta">proceed<i class="bi bi-chevron-right"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- CREDIT METER END -->
+
+                    </div>
+                </div>
+        </div>
+</section>
+<!-- Modal End -->
+
+
+
+
+
+    
+
+
+
+<script>
+   // Get the body element
+const bodyClass = document.body.className;
+
+// Default fill color
+let fillColor = '#000000';  // Default color (black)
+let fontFamily = 'Roboto';  // Font for the labels
+
+// Check the class of the body and assign the appropriate fill color
+switch (bodyClass) {
+  case 'make_inwidget_redesign':
+    fillColor = '#F2B54A';  
+    fontFamily = 'Montserrat';
+    break;
+  case 'make_chrysler':
+    fillColor = '#3a57a0';  
+    fontFamily = 'Roboto';
+    break;
+  case 'make_dodge':
+    fillColor = '#d50000';  
+    fontFamily = 'Roboto';
+    break;
+  case 'make_jeep':
+    fillColor = '#1E4544';  
+    fontFamily = 'Roboto';
+    break;
+  case 'make_ram':
+    fillColor = '#880d00';  
+    fontFamily = 'Roboto';
+    break;
+  case 'make_fiat':
+    fillColor = '#e70000';  
+    fontFamily = 'Roboto';
+    break;
+  case 'make_alfa':
+    fillColor = '#8f192b'; 
+    fontFamily = 'Roboto';
+    break;
+  case 'make_spoticar':
+    fillColor = '#10cfc8'; 
+    fontFamily = 'Roboto';
+    break;
+  default:
+    fillColor = '#000000';  // Default to Blue if no matching class is found
+    fontFamily = 'Roboto';
+}
+
+console.log(fillColor, fontFamily);  // To check the selected color
+    // Configuration variables
+    const targetValue = 800;  // Target credit score value
+    const animationSpeed = 2;  // Speed of the animation (2 is a moderate speed)
+    const trackColor = '#cccccc';  // Color of the background track
+    const needleColor = '#000';  // Color of the needle
+    // const fontFamily = 'Montserrat';  // Font for the labels
+    const fontSize = '16px';  // Font size for the labels
+    const fontWeight = '800';
+
+    // Define credit score range
+    const minValue = 300;
+    const maxValue = 850;
+    const increment = 50;
+
+    // Get canvas and context
+    const canvas = document.getElementById('creditmeter');
+    const ctx = canvas.getContext('2d');
+
+    let currentValue = 300;  // Initial value of credit score (start from 300)
+
+    // Function to draw the speedometer
+    function drawSpeedometer(value) {
+      const width = canvas.width = 400;
+      const height = canvas.height = 400;
+      const radius = width / 2 - 10;
+      const centerX = width / 2;
+      const centerY = height / 2;
+      const startAngle = Math.PI * 1; // 180 degrees in radians
+      const endAngle = Math.PI * 2; // 360 degrees in radians
+
+      // Clear canvas
+      ctx.clearRect(0, 0, width, height);
+
+      // Draw the background circle (track)
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+      ctx.lineWidth = 20;
+      ctx.strokeStyle = trackColor; // Track color (light gray)
+      ctx.lineCap = 'round';
+      ctx.stroke();
+
+      // Adjusted radius for partition lines (slightly smaller to touch the track)
+      const partitionLineRadius = radius - 20;  // Adjust this to touch the track
+
+      // Animate partition lines
+      const totalTicks = (maxValue - minValue) / increment;
+      const segmentWidth = (endAngle - startAngle) / totalTicks; // Calculate the angle for each partition line
+
+      // Shortened height for partition lines
+      const partitionLineHeight = 15;  // Shortened partition lines
+
+      const numLinesToDraw = Math.min(Math.floor((value - minValue) / increment), totalTicks);
+
+      // Draw partition lines with same animation speed as track fill
+      for (let i = 0; i <= totalTicks; i++) {
+        const angle = startAngle + (i * segmentWidth); // Calculate the angle for each partition line
+
+        // Calculate the start and end points for the partition line
+        const lineX1 = centerX + partitionLineRadius * Math.cos(angle);  // Partition lines radius
+        const lineY1 = centerY + partitionLineRadius * Math.sin(angle);
+
+        const lineX2 = centerX + (partitionLineRadius + partitionLineHeight) * Math.cos(angle); // End point for partition line
+        const lineY2 = centerY + (partitionLineRadius + partitionLineHeight) * Math.sin(angle);
+
+        // Set color: Initially gray, then fillColor as value increases
+        const partitionLineColor = i <= numLinesToDraw ? fillColor : trackColor;
+
+        // Draw the partition line
+        ctx.beginPath();
+        ctx.moveTo(lineX1, lineY1);  // Start at the partition line radius
+        ctx.lineTo(lineX2, lineY2);  // End at the shortened partition line height
+        ctx.lineWidth = 4; // Increased width of the partition line
+        ctx.strokeStyle = partitionLineColor; // Set color based on progress
+        ctx.lineCap = 'round';
+        ctx.stroke();
+      }
+
+      // Draw small ticks for every credit value from 300 to 850
+      const tickLength = 10; // Length of each tick
+      const tickWidth = 2; // Width of each tick
+
+      for (let i = 0; i <= totalTicks; i++) {
+        const angle = startAngle + (i * (endAngle - startAngle) / totalTicks); // Calculate the angle for each tick
+        const tickX = centerX + (radius - tickLength) * Math.cos(angle); // X position for the tick
+        const tickY = centerY + (radius - tickLength) * Math.sin(angle); // Y position for the tick
+
+        // Highlight the current tick corresponding to the current value
+        const isCurrentTick = i === Math.floor((value - minValue) / increment);
+
+        // Draw the tick
+        ctx.beginPath();
+        ctx.moveTo(centerX + (radius - tickLength) * Math.cos(angle), centerY + (radius - tickLength) * Math.sin(angle));
+        ctx.lineTo(tickX, tickY);
+        ctx.lineWidth = tickWidth;
+        ctx.strokeStyle = isCurrentTick ? fillColor : '#ccc';  // Highlight the current tick with fillColor
+        ctx.lineCap = 'round';
+        ctx.stroke();
+
+        // Add text labels at each increment of 50
+        if (i % 1 === 0) {
+          const label = minValue + i * increment;
+          const labelX = centerX + (radius - tickLength - 30) * Math.cos(angle);
+          const labelY = centerY + (radius - tickLength - 30) * Math.sin(angle);
+
+          // Apply the configurable font and size
+          ctx.font = `${fontWeight} ${fontSize} ${fontFamily}`;
+          ctx.fillStyle = '#333';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(label, labelX, labelY);
+        }
+      }
+
+      // Draw the circle fill animation
+      const fillAngle = startAngle + ((endAngle - startAngle) * ((currentValue - minValue) / (maxValue - minValue)));
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, radius, startAngle, fillAngle);
+      ctx.lineWidth = 20;
+      ctx.strokeStyle = fillColor;  // Fill color for the progress
+      ctx.lineCap = 'round';
+      ctx.stroke();
+
+      // Adjust the needle's size (smaller)
+      // const needleLength = radius * 0.8;  // Make the needle shorter by scaling the length
+      // const needleAngle = startAngle + ((endAngle - startAngle) * ((currentValue - minValue) / (maxValue - minValue)));
+
+      // // Draw the needle (pointer) with a pointed top and thicker bottom
+      // const needleWidth = 50;  // Width at the bottom of the pointer (thicker)
+      // const needleHeight = 120; // Increase the height of the pointer (taller needle)
+
+      // const pointerX1 = centerX + needleLength * Math.cos(needleAngle);
+      // const pointerY1 = centerY + needleLength * Math.sin(needleAngle);
+
+      // const pointerX2 = centerX + (needleLength - needleHeight) * Math.cos(needleAngle - 0.2);
+      // const pointerY2 = centerY + (needleLength - needleHeight) * Math.sin(needleAngle - 0.2);
+
+      // const pointerX3 = centerX + (needleLength - needleHeight) * Math.cos(needleAngle + 0.2);
+      // const pointerY3 = centerY + (needleLength - needleHeight) * Math.sin(needleAngle + 0.2);
+
+      // // Create the triangle (pointer)
+      // ctx.beginPath();
+      // ctx.moveTo(pointerX1, pointerY1);
+      // ctx.lineTo(pointerX2, pointerY2);
+      // ctx.lineTo(pointerX3, pointerY3);
+      // ctx.closePath();
+
+      // ctx.fillStyle = needleColor; // Fill color for the pointer
+      // ctx.fill();
+
+      // NEW JS
+      // Draw the needle with a gap from the center pivot
+const needleLength = radius * 0.75; // Adjust length
+const gap = 15;  // Adjust this value to increase/decrease gap
+
+const needleAngle = startAngle + ((endAngle - startAngle) * ((currentValue - minValue) / (maxValue - minValue)));
+
+// Adjusted start position to create the gap
+const needleStartX = centerX + gap * Math.cos(needleAngle);
+const needleStartY = centerY + gap * Math.sin(needleAngle);
+
+// Needle tip (sharp end)
+const needleTipX = centerX + (needleLength - gap) * Math.cos(needleAngle);
+const needleTipY = centerY + (needleLength - gap) * Math.sin(needleAngle);
+
+// Needle base (slightly wider for visibility)
+const baseWidth = 10; 
+const baseX1 = needleStartX + baseWidth * Math.cos(needleAngle - Math.PI / 2);
+const baseY1 = needleStartY + baseWidth * Math.sin(needleAngle - Math.PI / 2);
+const baseX2 = needleStartX + baseWidth * Math.cos(needleAngle + Math.PI / 2);
+const baseY2 = needleStartY + baseWidth * Math.sin(needleAngle + Math.PI / 2);
+
+// Draw the needle as a filled triangle
+ctx.beginPath();
+ctx.moveTo(needleTipX, needleTipY);
+ctx.lineTo(baseX1, baseY1);
+ctx.lineTo(baseX2, baseY2);
+ctx.closePath();
+ctx.fillStyle = needleColor; 
+ctx.lineCap = 'round';
+ctx.fill();
+
+// Draw the center pivot (small black circle)
+const pivotRadius = 10; // Adjust circle size if needed
+ctx.beginPath();
+ctx.arc(centerX, centerY, pivotRadius, 0, Math.PI * 2);
+ctx.fillStyle = '#000';
+ctx.lineCap = 'round';
+ctx.fill();
+
+
+    }
+
+    // Function to animate the credit value and fill the circle
+    function animateCredit() {
+      if (currentValue < targetValue) {
+        currentValue += animationSpeed;  // Gradually increase the value
+        if (currentValue > targetValue) {
+          currentValue = targetValue;  // Ensure it doesn't go over the target
+        }
+        drawSpeedometer(currentValue);
+        requestAnimationFrame(animateCredit); // Continue the animation
+      }
+    }
+
+    // Start the animation
+    animateCredit();
+
+
+    // ICON CHANGES JS
+    function changeImageBasedOnBodyClass() {
+      const bodyClass = document.body.className; // Get the class of the body
+      const imageElement = document.getElementById('makeImgPrequal'); // Get the image element
+ 
+      // Change the image source based on the class
+      if (bodyClass === 'make_alfa') {
+        imageElement.src = 'https://d1jougtdqdwy1v.cloudfront.net/dealeradmin/images/Car_alfa_prequal.svg'; // Set image for "make_jeep"
+      } else if (bodyClass === 'make_jeep') {
+        imageElement.src = 'https://d1jougtdqdwy1v.cloudfront.net/dealeradmin/images/Car_jeep_prequal.svg'; // Set image for "make_car"
+      } else if (bodyClass === 'make_ram') {
+        imageElement.src = 'https://d1jougtdqdwy1v.cloudfront.net/dealeradmin/images/Car_ram_prequal.svg'; // Set image for "make_truck"
+      }
+      else if (bodyClass === 'make_dodge') {
+        imageElement.src = 'https://d1jougtdqdwy1v.cloudfront.net/dealeradmin/images/Car_dodge_prequal.svg';
+      } 
+      else if (bodyClass === 'make_chrysler') {
+        imageElement.src = 'https://d1jougtdqdwy1v.cloudfront.net/dealeradmin/images/Car_chrysler_prequal.svg';
+      }
+      else if (bodyClass === 'make_ram') {
+        imageElement.src = 'https://d1jougtdqdwy1v.cloudfront.net/dealeradmin/images/Car_ram_prequal.svg';
+      }
+      else if (bodyClass === 'make_fiat') {
+        imageElement.src = 'https://d1jougtdqdwy1v.cloudfront.net/dealeradmin/images/Car_fiat_prequal.svg';
+      }
+      else if (bodyClass === 'make_spoticar') {
+        imageElement.src = 'https://d1jougtdqdwy1v.cloudfront.net/dealeradmin/images/car_spoticar.svg';
+      }
+      else if (bodyClass === 'make_inwidget_redesign') {
+        imageElement.src = 'https://d1jougtdqdwy1v.cloudfront.net/dealeradmin/images/inwidget_redesign.svg';
+      }
+      else {
+        imageElement.src = 'https://d1jougtdqdwy1v.cloudfront.net/dealeradmin/images/inwidget_redesign.svg'; // Default image if class does not match
+      }
+    }
+ 
+    // Call the function when the page loads to change the image based on the current body class
+    window.onload = changeImageBasedOnBodyClass;
+
+  </script>
+
+</body>
+</html>
