@@ -731,3 +731,6 @@ input::-webkit-contacts-auto-fill-button {
     position: absolute;
     right: 0;
 }
+input::-webkit-textfield-decoration-container {
+   display: none;
+}
